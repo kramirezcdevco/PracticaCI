@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id "org.sonarqube" version "3.4.0.2513"
+}
+
+group 'org.karenramirez'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    'org/karenramirez/practicaci/model/**'
+            ])
+        })
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "PracticaSemillero"
+        property "sonar.organization", "karen01122207"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.coverage.exclusions", "**/model/**"
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
