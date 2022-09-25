@@ -1,9 +1,33 @@
 pipeline {
   agent any
   stages {
-    stage('log version') {
+    stage('clean') {
       steps {
-        sh 'java --version'
+        build 'clean'
+      }
+    }
+
+    stage('build') {
+      steps {
+        build 'build'
+      }
+    }
+
+    stage('test') {
+      steps {
+        build 'test'
+      }
+    }
+
+    stage('cobertura') {
+      steps {
+        build 'cobertura'
+      }
+    }
+
+    stage('sonar') {
+      steps {
+        build 'sonar'
       }
     }
 
