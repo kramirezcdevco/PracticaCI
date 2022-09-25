@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('log version') {
       steps {
-        sh '''java --version
-gradle -v'''
+        sh 'java --version'
       }
     }
 
