@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Clean') {
+    stage('clean') {
       steps {
-        sh 'gradlew clean'
+        bat 'gradlew clean'
       }
     }
 
