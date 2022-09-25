@@ -1,33 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('clean') {
+    stage('Clean') {
       steps {
-        build 'clean'
-      }
-    }
-
-    stage('build') {
-      steps {
-        build 'build'
-      }
-    }
-
-    stage('test') {
-      steps {
-        build 'test'
-      }
-    }
-
-    stage('cobertura') {
-      steps {
-        build 'cobertura'
-      }
-    }
-
-    stage('sonar') {
-      steps {
-        build 'sonar'
+        sh 'gradlew clean'
       }
     }
 
