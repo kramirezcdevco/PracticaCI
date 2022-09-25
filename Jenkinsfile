@@ -24,6 +24,14 @@ pipeline {
         bat 'gradlew jacocoTestReport'
       }
     }
+    
+    stage('Sonar') {
+       steps {
+         withSonarQubeEnv('SonarCloud'){
+          bat 'gradlew sonarqube'
+         }
+       }
+    }
 
   }
 }
